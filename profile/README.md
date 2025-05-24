@@ -27,7 +27,6 @@
 ## Contacts
 
 💬 [GitHub Discussions](https://github.com/true-async)  
-✉️ true.async.php@gmail.com
 
 ---
 
