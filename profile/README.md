@@ -18,32 +18,7 @@
 
 ## Installation
 
-🖥️ **Windows**
-
-1. **Install php-sdk:**  
-   Download and set up [php-sdk](https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2) for building PHP extensions on Windows.
-
-2. **Install and build LibUV:**  
-   You can use [vcpkg](https://github.com/microsoft/vcpkg) or build libuv from source.
-
-3. **Copy LibUV files to PHP SDK directories:**
-
-   ```
-   1. Copy everything from 'libuv\include' to '%PHP_SDK_PATH%\deps\include\libuv\'
-   2. Copy 'libuv.lib' to '%PHP_SDK_PATH%\deps\lib\'
-   ```
-   `%PHP_SDK_PATH%` is your php-sdk installation root.
-
-4. **Configure and build the extension with PHP:**
-
-   ```
-   cd \path\to\php-src
-   buildconf
-   configure --enable-experimental-async-api --enable-async
-   nmake
-   ```
-
-🐧 **Unix**
+### 🐧 **Unix**
 
 1. **Clone the PHP repository:**
 
@@ -91,6 +66,30 @@ Please see the [LibUV installation guide](https://github.com/libuv/libuv)
 
 ---
 
+### 🖥️ **Windows**
+
+1. **Install php-sdk:**  
+   Download and set up [php-sdk](https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2) for building PHP extensions on Windows.
+
+2. **Install and build LibUV:**  
+   You can use [vcpkg](https://github.com/microsoft/vcpkg) or build libuv from source.
+
+3. **Copy LibUV files to PHP SDK directories:**
+
+   ```
+   1. Copy everything from 'libuv\include' to '%PHP_SDK_PATH%\deps\include\libuv\'
+   2. Copy 'libuv.lib' to '%PHP_SDK_PATH%\deps\lib\'
+   ```
+   `%PHP_SDK_PATH%` is your php-sdk installation root.
+
+4. **Configure and build the extension with PHP:**
+
+   ```
+   cd \path\to\php-src
+   buildconf
+   configure --enable-experimental-async-api --enable-async
+   nmake
+   ```
 
 ## Contacts
 
