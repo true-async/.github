@@ -2,19 +2,19 @@
 
 **PHP TRUE ASYNC** brings native asynchronous programming to PHP core.
 
-## Project Structure
+##  Project Structure
 
-⚙️ [`php-src`](https://github.com/true-async/php-src)  
-&emsp;• `true-async-api` branch — Async API only
-&emsp;• `true-async` branch — PHP core changes and related libraries
-&emsp;• [true-async-stable](https://github.com/true-async/php-src/tree/true-async-stable) - Async API + PHP Core modifications **stable**
-&emsp;• [true-async](https://github.com/true-async/php-src/tree/true-async) - Async API + PHP Core modifications
+### ⚙️ PHP Core
 
-🔌 [`php-async`](https://github.com/true-async/php-async)  
-&emsp;Extension implementing the Async API
+* [true-async](https://github.com/true-async/php-src/tree/true-async-stable) branch — `TrueAsync API` + `PHP` core changes and related libraries
+* [true-async-api](https://github.com/true-async/php-src/tree/true-async-api-stable) branch — `TrueAsync API` only
 
-📄 [`php-true-async-rfc`](https://github.com/true-async/php-true-async-rfc)  
-&emsp;RFC and documentation
+### 🔌 True Async extention
+
+ [`php-async`](https://github.com/true-async/php-async) — Extension implementing the `TrueAsync API`
+
+### 📄 RFC 
+[`php-true-async-rfc`](https://github.com/true-async/php-true-async-rfc) — `RFC` and documentation
 
 ## Installation
 
