@@ -93,7 +93,7 @@ Please see the [LibUV installation guide](https://github.com/libuv/libuv)
 
 ## Contacts
 
-💬 [GitHub Discussions](https://github.com/true-async)  
+💬 [Discord Discussions](https://discord.gg/94xcsfSR)
 
 ---
 
