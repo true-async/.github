@@ -58,7 +58,7 @@ Please see the [LibUV installation guide](https://github.com/libuv/libuv)
 
    ```
    ./buildconf
-   ./configure --enable-experimental-async-api --enable-async
+   ./configure --enable-async
    make && sudo make install
    ```
 
@@ -87,7 +87,7 @@ Please see the [LibUV installation guide](https://github.com/libuv/libuv)
    ```
    cd \path\to\php-src
    buildconf
-   configure --enable-experimental-async-api --enable-async
+   configure --enable-async
    nmake
    ```
 
