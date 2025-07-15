@@ -93,7 +93,7 @@ Please see the [LibUV installation guide](https://github.com/libuv/libuv)
 
 ## Contacts
 
-💬 [Discord Discussions](https://discord.gg/94xcsfSR)
+💬 [Discord Discussions](https://discord.gg/yqBQPBHKp5)
 
 ---
 
