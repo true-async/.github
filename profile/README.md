@@ -91,7 +91,7 @@ Please see the [LibUV installation guide](https://github.com/libuv/libuv)
    nmake
    ```
 
-### 🐛 Xdebug
+## 🐛 Xdebug
 TrueAsync-aware Xdebug 
 build: [`true-async/xdebug` `true-async-86` branch](https://github.com/true-async/xdebug/tree/true-async-86).
 
