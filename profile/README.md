@@ -91,6 +91,71 @@ Please see the [LibUV installation guide](https://github.com/libuv/libuv)
    nmake
    ```
 
+### 🐛 Xdebug
+TrueAsync-aware Xdebug 
+build: [`true-async/xdebug` `true-async-86` branch](https://github.com/true-async/xdebug/tree/true-async-86).
+
+## 🧟 FrankenPHP
+
+A concurrent coroutine-based server that can handle multiple requests using a single thread:
+see: [FrankenPHP with TrueAsync](https://github.com/true-async/frankenphp/tree/true-async)
+
+1. **Build PHP** with async + ZTS + embed (no `=shared`):
+   ```bash
+   ./configure --prefix=/usr/local --enable-async --enable-zts --enable-embed --with-openssl --with-curl
+   make -j$(nproc) && sudo make install
+   php-config --configure-options | grep -E "(embed|zts|async)"
+   ```
+2. **Build FrankenPHP** with TrueAsync tags (sets CGO flags from `php-config`):
+   ```bash
+   ./build.sh
+   # or manually:
+   export CGO_CFLAGS="$(php-config --includes)"
+   export CGO_LDFLAGS="$(php-config --ldflags) $(php-config --libs)"
+   go build -tags "trueasync,nowatcher" -o frankenphp
+   ```
+3. **Run with Caddy** (async workers get per-thread queues; 503 when buffers are full):
+   ```caddyfile
+   {
+   admin off
+   frankenphp {
+   # keep defaults for num_threads/max_threads to let FrankenPHP size the pool automatically
+   }
+   }
+   
+   :8080 {
+   root * /app/www
+   
+       # Enable PHP server with FrankenPHP
+       route {
+           # Rewrite all requests to entrypoint.php
+           rewrite * /entrypoint.php?uri={http.request.uri.path}
+   
+           php_server {
+               index off
+               file_server off
+   
+               worker {
+                   file /app/www/entrypoint.php
+                   num 1
+                   async
+                   buffer_size 20
+                   match *
+               }
+           }
+       }
+   
+       # Logging
+       log {
+           output file /app/www/storage/logs/frankenphp-access.log
+           level INFO
+       }
+   }
+   
+   ```
+
+4. Then run `./frankenphp run --config Caddyfile.async` and curl your endpoint.
+
 ## Contacts
 
 💬 [Discord Discussions](https://discord.gg/yqBQPBHKp5)
