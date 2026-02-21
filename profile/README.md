@@ -1,165 +1,67 @@
-# PHP TRUE ASYNC
+<div align="center">
 
-**PHP TRUE ASYNC** brings native asynchronous programming to PHP core.
+<img src="https://true-async.github.io/assets/logo-header.png" alt="PHP True Async" height="80">
 
-##  Project Structure
+# PHP True Async
 
-### ⚙️ PHP Core
+**True Asynchronous inside PHP**
 
-* [true-async](https://github.com/true-async/php-src/tree/true-async-stable) branch — `TrueAsync API` + `PHP` core changes and related libraries
-* [true-async-api](https://github.com/true-async/php-src/tree/true-async-api-stable) branch — `TrueAsync API` only
+Imagine PHP with coroutines, where familiar functions support concurrent I/O.
+No colored `async` functions. Just do `spawn()` and go!
 
-### 🔌 True Async extention
+[![Documentation](https://img.shields.io/badge/Docs-true--async.github.io-blue?style=flat-square)](https://true-async.github.io/en/)
+[![Download](https://img.shields.io/badge/Download-Install-green?style=flat-square)](https://true-async.github.io/en/download.html)
+[![RFC](https://img.shields.io/badge/RFC-php--true--async-orange?style=flat-square)](https://github.com/true-async/php-true-async-rfc)
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/yqBQPBHKp5)
 
- [`php-async`](https://github.com/true-async/php-async) — Extension implementing the `TrueAsync API`
-
-### 📄 RFC 
-[`php-true-async-rfc`](https://github.com/true-async/php-true-async-rfc) — `RFC` and documentation
-
-## Installation
-
-### 🐧 **Unix**
-
-1. **Clone the PHP repository:**
-
-    for example, basic directory name is `php-src`:
-
-   ```
-   git clone https://github.com/true-async/php-src -b true-async-api ./php-src
-   ```
-
-2. **Clone the `True Async` extension repository:**
-
-    to the `ext` directory of your PHP source:
-
-    ```
-    git clone https://github.com/true-async/php-async ./php-src/ext/async
-    ```
-
-3. **Install PHP development tools:**
-
-    Make sure you have the necessary development tools installed. On Debian/Ubuntu, you can run:
-    
-    ```
-    sudo apt-get install php-dev build-essential autoconf libtool pkg-config
-    ```
-    
-    For macOS, you can use Homebrew:
-    
-    ```
-    brew install autoconf automake libtool pkg-config
-    ```
-
-4. **Install LibUV:**:
-   
-Please see the [LibUV installation guide](https://github.com/libuv/libuv)
-
-5. **Configure and build:**
-
-   ```
-   ./buildconf
-   ./configure --enable-async
-   make && sudo make install
-   ```
-
-   We can use `--enable-debug` to enable debug mode, which is useful for development.
+</div>
 
 ---
 
-### 🖥️ **Windows**
+## What is this?
 
-1. **Install php-sdk:**  
-   Download and set up [php-sdk](https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2) for building PHP extensions on Windows.
+**PHP True Async** brings native coroutines to the PHP core — no extensions swapping out blocking functions, no framework magic. Regular PHP functions (`fread`, `fwrite`, `curl`, `PDO`, `fsockopen`) become non-blocking automatically inside a coroutine.
 
-2. **Install and build LibUV:**  
-   You can use [vcpkg](https://github.com/microsoft/vcpkg) or build libuv from source.
+```php
+$task1 = spawn(function() {
+    $pdo = new PDO($dsn);
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+    $stmt->execute([1]);       // non-blocking I/O, yields to other coroutines
+    return $stmt->fetch();
+});
 
-3. **Copy LibUV files to PHP SDK directories:**
+$task2 = spawn(function() {
+    $socket = fsockopen($host, 9000);
+    fwrite($socket, "ping");   // non-blocking, runs concurrently with $task1
+});
+```
 
-   ```
-   1. Copy everything from 'libuv\include' to '%PHP_SDK_PATH%\deps\include\libuv\'
-   2. Copy 'libuv.lib' to '%PHP_SDK_PATH%\deps\lib\'
-   ```
-   `%PHP_SDK_PATH%` is your php-sdk installation root.
+## Project Structure
 
-4. **Configure and build the extension with PHP:**
+| Repository | Description |
+|---|---|
+| [php-src `true-async`](https://github.com/true-async/php-src/tree/true-async-stable) | PHP core with TrueAsync API + coroutine scheduler |
+| [php-async](https://github.com/true-async/php-async) | Extension implementing the TrueAsync API (libuv reactor) |
+| [php-true-async-rfc](https://github.com/true-async/php-true-async-rfc) | RFC, design documents and rationale |
+| [releases](https://github.com/true-async/releases) | Pre-built binaries for Linux, macOS and Windows |
 
-   ```
-   cd \path\to\php-src
-   buildconf
-   configure --enable-async
-   nmake
-   ```
+## Get Started
 
-## 🐛 Xdebug
-TrueAsync-aware Xdebug 
-build: [`true-async/xdebug` `true-async-86` branch](https://github.com/true-async/xdebug/tree/true-async-86).
+Full installation instructions for Linux, macOS, Windows and Docker:
+**[→ Download & Install](https://true-async.github.io/en/download.html)**
 
-## 🧟 FrankenPHP
+Full API reference and guides:
+**[→ Documentation](https://true-async.github.io/en/)**
 
-A concurrent coroutine-based server that can handle multiple requests using a single thread:
-see: [FrankenPHP with TrueAsync](https://github.com/true-async/frankenphp/tree/true-async)
+## Contributing
 
-1. **Build PHP** with async + ZTS + embed (no `=shared`):
-   ```bash
-   ./configure --prefix=/usr/local --enable-async --enable-zts --enable-embed --with-openssl --with-curl
-   make -j$(nproc) && sudo make install
-   php-config --configure-options | grep -E "(embed|zts|async)"
-   ```
-2. **Build FrankenPHP** with TrueAsync tags (sets CGO flags from `php-config`):
-   ```bash
-   ./build.sh
-   # or manually:
-   export CGO_CFLAGS="$(php-config --includes)"
-   export CGO_LDFLAGS="$(php-config --ldflags) $(php-config --libs)"
-   go build -tags "trueasync,nowatcher" -o frankenphp
-   ```
-3. **Run with Caddy** (async workers get per-thread queues; 503 when buffers are full):
-   ```caddyfile
-   {
-   admin off
-   frankenphp {
-   # keep defaults for num_threads/max_threads to let FrankenPHP size the pool automatically
-   }
-   }
-   
-   :8080 {
-   root * /app/www
-   
-       # Enable PHP server with FrankenPHP
-       route {
-           # Rewrite all requests to entrypoint.php
-           rewrite * /entrypoint.php?uri={http.request.uri.path}
-   
-           php_server {
-               index off
-               file_server off
-   
-               worker {
-                   file /app/www/entrypoint.php
-                   num 1
-                   async
-                   buffer_size 20
-                   match *
-               }
-           }
-       }
-   
-       # Logging
-       log {
-           output file /app/www/storage/logs/frankenphp-access.log
-           level INFO
-       }
-   }
-   
-   ```
-
-4. Then run `./frankenphp run --config Caddyfile.async` and curl your endpoint.
-
-## Contacts
-
-💬 [Discord Discussions](https://discord.gg/yqBQPBHKp5)
+We welcome contributions of all kinds — code, docs, testing, and community support.
+**[→ Contributing Guide](https://true-async.github.io/en/contributing.html)**
 
 ---
 
-**PHP TRUE ASYNC** — making async a standard in PHP!
+<div align="center">
+
+💬 [Discord](https://discord.gg/yqBQPBHKp5) · 📖 [Docs](https://true-async.github.io/en/) · 🐛 [Issues](https://github.com/true-async/php-async/issues)
+
+</div>
