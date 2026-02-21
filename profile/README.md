@@ -1,7 +1,5 @@
 <div align="center">
 
-# PHP True Async
-
 **True Asynchronous inside PHP**
 
 Imagine PHP with coroutines, where familiar functions support concurrent I/O.
