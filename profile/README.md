@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://true-async.github.io/assets/logo-header.png" alt="PHP True Async" height="80">
-
 # PHP True Async
 
 **True Asynchronous inside PHP**
