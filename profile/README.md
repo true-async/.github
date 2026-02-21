@@ -11,6 +11,7 @@ No colored `async` functions. Just do `spawn()` and go!
 [![Download](https://img.shields.io/badge/Download-Install-green?style=flat-square)](https://true-async.github.io/en/download.html)
 [![RFC](https://img.shields.io/badge/RFC-php--true--async-orange?style=flat-square)](https://github.com/true-async/php-true-async-rfc)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/yqBQPBHKp5)
+[![Docker](https://img.shields.io/badge/Docker-trueasync-2496ED?style=flat-square&logo=docker&logoColor=white)](https://hub.docker.com/r/trueasync/php-true-async)
 
 </div>
 
