@@ -5,6 +5,8 @@
 Imagine PHP with coroutines, where familiar functions support concurrent I/O.
 No colored `async` functions. Just do `spawn()` and go!
 
+**70+ standard PHP functions** work non-blocking out of the box — `fread`, `fwrite`, `curl`, `PDO`, `sleep` and more.
+
 [![Documentation](https://img.shields.io/badge/Docs-true--async.github.io-blue?style=flat-square)](https://true-async.github.io/en/)
 [![Download](https://img.shields.io/badge/Download-Install-green?style=flat-square)](https://true-async.github.io/en/download.html)
 [![RFC](https://img.shields.io/badge/RFC-php--true--async-orange?style=flat-square)](https://github.com/true-async/php-true-async-rfc)
