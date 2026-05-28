@@ -41,6 +41,7 @@ $task2 = spawn(function() {
 |---|---|
 | [php-src `true-async`](https://github.com/true-async/php-src/tree/true-async-stable) | PHP core with TrueAsync API + coroutine scheduler |
 | [php-async](https://github.com/true-async/php-async) | Extension implementing the TrueAsync API (libuv reactor) |
+| [server](https://github.com/true-async/server) | Async Server with Http2, Http3 |
 | [php-true-async-rfc](https://github.com/true-async/php-true-async-rfc) | RFC, design documents and rationale |
 | [releases](https://github.com/true-async/releases) | Pre-built binaries for Linux, macOS and Windows |
 
