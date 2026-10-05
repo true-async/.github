@@ -12,6 +12,7 @@ No colored `async` functions. Just do `spawn()` and go!
 [![RFC](https://img.shields.io/badge/RFC-php--true--async-orange?style=flat-square)](https://github.com/true-async/php-true-async-rfc)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/yqBQPBHKp5)
 [![Docker](https://img.shields.io/badge/Docker-trueasync-2496ED?style=flat-square&logo=docker&logoColor=white)](https://hub.docker.com/r/trueasync/php-true-async)
+[![Donate](https://img.shields.io/badge/Donate-Giveth-8B5CF6?style=flat-square)](https://giveth.io/project/trueasync-php)
 
 </div>
 
@@ -57,6 +58,12 @@ Full API reference and guides:
 
 We welcome contributions of all kinds — code, docs, testing, and community support.
 **[→ Contributing Guide](https://true-async.github.io/en/contributing.html)**
+
+## Support the project
+
+If you find TrueAsync useful, you can support its development:
+
+**[→ Donate via Giveth](https://giveth.io/project/trueasync-php)**
 
 ---
 
